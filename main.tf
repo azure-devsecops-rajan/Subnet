@@ -1,7 +1,7 @@
-resource "azurerm_subnet" "example" {
+resource "azurerm_subnet" "subnet" {
   for_each             = var.subnet_map
-  name                 = "example-subnet"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
-  address_prefixes     = ["10.0.1.0/24"]
+  name                 = each.value.sub_name
+  resource_group_name  = each.value.rg_name
+  virtual_network_name = each.value.vnet_name
+  address_prefixes     = each.value.address_prefixes
 }
